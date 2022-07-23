@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gmda/home_page.dart';
 
 void main() {
   runApp(Myapp());
@@ -9,11 +10,6 @@ class Myapp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Material(
-      child: Center(
-        child: const Text("Welcome to GMDA Official Application"),
-      ),
-    ));
+    return MaterialApp(home: HomePage());
   }
 }
