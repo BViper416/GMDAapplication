@@ -3,15 +3,17 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gmda/utils/routes.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginPage extends StatefulWidget {
-  LoginPage({Key? key}) : super(key: key);
+class Signuppage extends StatefulWidget {
+  const Signuppage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<Signuppage> createState() => _SignuppageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  String name = "";
+
+
+class _SignuppageState extends State<Signuppage> {
+ String name = "";
   bool changeButton = false;
   final _formkey = GlobalKey<FormState>();
 
@@ -22,12 +24,22 @@ class _LoginPageState extends State<LoginPage> {
       });
 
       await Future.delayed(Duration(seconds: 1));
-      await Navigator.pushNamed(context, MyRoutes.homeroute);
+      await Navigator.pushNamed(context, MyRoutes.loginRoute);
       setState(() {
         changeButton = false;
       });
     }
   }
+
+
+
+
+
+//Button route above 
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
-                child: Text("Logging in your account",
+                child: Text("Creating your account",
                     style:
                         TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
               ),
@@ -154,19 +166,12 @@ class _LoginPageState extends State<LoginPage> {
             //       Navigator.pushNamed(context, MyRoutes.homeroute);
             //     },
             //     child: Text("SIGN IN",
-            //         style: TextStyle(fontWeight: FontWeight.bold)))
-        
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(onPressed: (){}, child: 
-              Text('Forgot Password', style: TextStyle(decoration: TextDecoration.underline, fontSize: 18,),),)
-            ],
-          )
+            //         style: TextStyle(fontWeight: FontWeight.bold))
           
           ],
         ),
       ),
+
     );
   }
 }
