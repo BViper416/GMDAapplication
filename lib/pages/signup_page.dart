@@ -2,6 +2,8 @@ import "package:flutter/material.dart";
 import 'package:flutter_svg/svg.dart';
 import 'package:gmda/utils/routes.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:date_time_picker/date_time_picker.dart';
 
 class Signuppage extends StatefulWidget {
   const Signuppage({Key? key}) : super(key: key);
@@ -10,12 +12,12 @@ class Signuppage extends StatefulWidget {
   State<Signuppage> createState() => _SignuppageState();
 }
 
-
-
 class _SignuppageState extends State<Signuppage> {
- String name = "";
+  String name = "";
   bool changeButton = false;
   final _formkey = GlobalKey<FormState>();
+   TextEditingController password = TextEditingController();
+  TextEditingController confirmpassword = TextEditingController();
 
   moveToHome(BuildContext context) async {
     if (_formkey.currentState!.validate()) {
@@ -31,15 +33,7 @@ class _SignuppageState extends State<Signuppage> {
     }
   }
 
-
-
-
-
-//Button route above 
-
-
-
-
+//Button route above
 
   @override
   Widget build(BuildContext context) {
@@ -49,21 +43,38 @@ class _SignuppageState extends State<Signuppage> {
         key: _formkey,
         child: Column(
           children: [
-            SvgPicture.asset(
-              "assets/image/Logo.svg",
-              fit: BoxFit.cover,
-            ),
 
-            Padding(
-              padding: EdgeInsets.all(0.0),
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: Text(
-                  "Welcome $name",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,),
-                ),
-              ),
-            ),
+
+            AppBar(
+        title: const Text('Signup Page'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.add_alert),
+            tooltip: 'Show Snackbar',
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('This is a snackbar')));
+            },
+             )] ),
+            // SvgPicture.asset(
+            //   "assets/image/Logo.svg",
+            //   fit: BoxFit.scaleDown,
+            //   height: 50, width: 50,
+            // ),
+
+            // Padding(
+            //   padding: EdgeInsets.all(0.0),
+            //   child: Align(
+            //     alignment: Alignment.topCenter,
+            //     child: Text(
+            //       "Welcome $name",
+            //       style: TextStyle(
+            //         fontSize: 25,
+            //         fontWeight: FontWeight.bold,
+            //       ),
+            //     ),
+            //   ),
+            // ),
 
             //ignore: unnecessary_new
 
@@ -84,6 +95,9 @@ class _SignuppageState extends State<Signuppage> {
                         TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
               ),
             ),
+            SizedBox(
+              height: 30,
+            ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(children: [
@@ -93,11 +107,11 @@ class _SignuppageState extends State<Signuppage> {
                         filled: true,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10)),
-                        hintText: "Username/Email-Id",
-                        labelText: "Login-ID"),
+                        hintText: "Please enter a valid Name",
+                        labelText: "Name"),
                     validator: (value) {
                       if (value != null && value.isEmpty) {
-                        return "Login ID cannot be empty";
+                        return "Name cannot be empty";
                       }
                       return null;
                     },
@@ -110,6 +124,73 @@ class _SignuppageState extends State<Signuppage> {
                   height: 30,
                 ),
                 TextFormField(
+                    obscureText: false,
+                    decoration: InputDecoration(
+                        fillColor: Colors.grey.shade200,
+                        filled: true,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        hintText: "Enter email address",
+                        labelText: "Email-ID"),
+                    validator: (value) {
+                      if (value != null && value.isEmpty) {
+                        return "please enter a valid email address";
+                      }
+                      {
+                        return null;
+                      }
+                    }),
+                SizedBox(
+                  height: 30,
+                ),
+                IntlPhoneField(
+                  decoration: InputDecoration(
+                    fillColor: Colors.grey.shade200,
+                    filled: true,
+                    labelText: 'Phone Number',
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(),
+                    ),
+                  ),
+                  initialCountryCode: 'IN',
+                  onChanged: (phone) {
+                    print(phone.completeNumber);
+                  },
+                )
+              ]),
+            ),
+
+            SizedBox(
+              height: 10,
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextFormField(
+                controller: password,
+                obscureText: true,
+                decoration: InputDecoration(
+                    fillColor: Colors.grey.shade200,
+                    filled: true,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    hintText: "Enter Password",
+                    labelText: "Password"),
+                validator: (value) {
+                  if (value != null && value.isEmpty) {
+                    return "Password cannot be empty";
+                  } else if (value != null && value.length < 6) {
+                    return "Password length should be greater than 6";
+                  }
+                  return null;
+                },
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextFormField(
+                controller: confirmpassword,
                   obscureText: true,
                   decoration: InputDecoration(
                       fillColor: Colors.grey.shade200,
@@ -117,23 +198,45 @@ class _SignuppageState extends State<Signuppage> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10)),
                       hintText: "Enter Password",
-                      labelText: "Password"),
+                      labelText: "Confirm Password"),
                   validator: (value) {
-                    if (value != null && value.isEmpty) {
-                      return "Password cannot be empty";
-                    } else if (value != null && value.length < 6) {
-                      return "Password length should be greater than 6";
-                    }
-                    return null;
-                  },
-                )
-              ]),
+                    if(value != null && value.isEmpty)
+                      {
+                        return 'Please re-enter password';
+                      }
+                      print(password.text);
+                      print(confirmpassword.text);
+                      if(password.text!=confirmpassword.text){
+                        return "Password does not match";
+                      }
+                      return null;
+                    },
+                ),
+            ),
+
+            SizedBox(
+              height: 10,
+            ),
+
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 10),
+              child: DateTimePicker(
+                initialValue: '',
+                firstDate: DateTime(2000),
+                lastDate: DateTime(2100),
+                dateLabelText: 'Date of Birth',
+                onChanged: (val) => print(val),
+                validator: (val) {
+                  print(val);
+                  return null;
+                },
+                onSaved: (val) => print(val),
+              ),
             ),
 
             SizedBox(
               height: 20,
             ),
-
 
             InkWell(
               onTap: () => moveToHome(context),
@@ -149,7 +252,7 @@ class _SignuppageState extends State<Signuppage> {
                         color: Colors.white,
                       )
                     : Text(
-                        "SIGN IN",
+                        "SIGN UP",
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -167,11 +270,9 @@ class _SignuppageState extends State<Signuppage> {
             //     },
             //     child: Text("SIGN IN",
             //         style: TextStyle(fontWeight: FontWeight.bold))
-          
           ],
         ),
       ),
-
     );
   }
 }
