@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 
+
+
 class Signuppage extends StatefulWidget {
   const Signuppage({Key? key}) : super(key: key);
 
@@ -16,7 +18,7 @@ class _SignuppageState extends State<Signuppage> {
   String name = "";
   bool changeButton = false;
   final _formkey = GlobalKey<FormState>();
-   TextEditingController password = TextEditingController();
+  TextEditingController password = TextEditingController();
   TextEditingController confirmpassword = TextEditingController();
 
   moveToHome(BuildContext context) async {
@@ -43,19 +45,7 @@ class _SignuppageState extends State<Signuppage> {
         key: _formkey,
         child: Column(
           children: [
-
-
-            AppBar(
-        title: const Text('Signup Page'),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.add_alert),
-            tooltip: 'Show Snackbar',
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('This is a snackbar')));
-            },
-             )] ),
+            
             // SvgPicture.asset(
             //   "assets/image/Logo.svg",
             //   fit: BoxFit.scaleDown,
@@ -81,7 +71,7 @@ class _SignuppageState extends State<Signuppage> {
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.only(top: 20, left: 15),
+                padding: const EdgeInsets.only(top: 50, left: 15),
                 child: Text("Let's start by", style: TextStyle(fontSize: 20)),
               ),
             ),
@@ -191,27 +181,26 @@ class _SignuppageState extends State<Signuppage> {
               padding: const EdgeInsets.all(16.0),
               child: TextFormField(
                 controller: confirmpassword,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                      fillColor: Colors.grey.shade200,
-                      filled: true,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      hintText: "Enter Password",
-                      labelText: "Confirm Password"),
-                  validator: (value) {
-                    if(value != null && value.isEmpty)
-                      {
-                        return 'Please re-enter password';
-                      }
-                      print(password.text);
-                      print(confirmpassword.text);
-                      if(password.text!=confirmpassword.text){
-                        return "Password does not match";
-                      }
-                      return null;
-                    },
-                ),
+                obscureText: true,
+                decoration: InputDecoration(
+                    fillColor: Colors.grey.shade200,
+                    filled: true,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    hintText: "Enter Password",
+                    labelText: "Confirm Password"),
+                validator: (value) {
+                  if (value != null && value.isEmpty) {
+                    return 'Please re-enter password';
+                  }
+                  print(password.text);
+                  print(confirmpassword.text);
+                  if (password.text != confirmpassword.text) {
+                    return "Password does not match";
+                  }
+                  return null;
+                },
+              ),
             ),
 
             SizedBox(

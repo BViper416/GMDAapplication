@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gmda/widgets/drawer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -7,7 +8,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("GMDA")),
-      drawer: Drawer(),
+      drawer: MyDrawer(),
       body: Center(
         child: const Text("Welcome to GMDA Official Application"),
       ),
