@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "271419830713",
+    "project_id": "gmda-cb9e4",
+    "storage_bucket": "gmda-cb9e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271419830713:android:1fae535ece74519a238668",
+        "android_client_info": {
+          "package_name": "com.manish.gmda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "271419830713-8af1fjdfe9di2tdkfr7q30q90o0d2oa8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWpkPj6zXdtoZro1WK4MKqwKL3QMqYDpY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "271419830713-8af1fjdfe9di2tdkfr7q30q90o0d2oa8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

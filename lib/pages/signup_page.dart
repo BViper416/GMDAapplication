@@ -5,7 +5,18 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 
+class MyWidget extends StatelessWidget {
+  const MyWidget({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Signup Page",
+      theme: ThemeData(primarySwatch: Colors.green),
+      home: Scaffold(appBar: AppBar(title: const Text("Sign Up")),)
+    );
+  }
+}
 
 class Signuppage extends StatefulWidget {
   const Signuppage({Key? key}) : super(key: key);
@@ -45,7 +56,6 @@ class _SignuppageState extends State<Signuppage> {
         key: _formkey,
         child: Column(
           children: [
-            
             // SvgPicture.asset(
             //   "assets/image/Logo.svg",
             //   fit: BoxFit.scaleDown,
