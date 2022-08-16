@@ -7,10 +7,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 
 void main() async {
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
   runApp(Myapp());
 }
 
