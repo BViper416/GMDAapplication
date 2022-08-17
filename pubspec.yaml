@@ -41,10 +41,11 @@ dependencies:
   page_transition: ^2.0.9
   intl_phone_field: ^3.1.0
   date_time_picker: ^2.1.0
-  firebase_core: ^1.20.1
-  firebase_auth: ^3.6.3
-  cloud_firestore: ^3.4.4
-  firebase_storage: ^10.3.5
+  dots_indicator: ^2.1.0
+  # firebase_core: ^1.20.1
+  # firebase_auth: ^3.6.3
+  # cloud_firestore: ^3.4.4
+  # firebase_storage: ^10.3.5
   
 
 dev_dependencies:

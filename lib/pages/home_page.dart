@@ -1,49 +1,77 @@
-import 'package:flutter/material.dart';
-import 'package:gmda/widgets/drawer.dart';
 
-class HomePage extends StatelessWidget {
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:gmda/widgets/big_text.dart';
+import 'package:gmda/widgets/drawer.dart';
+import 'package:gmda/widgets/small_text.dart';
+
+import 'home_page_body.dart';
+
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("GMDA")),
-      drawer: MyDrawer(),
-      body: Center(child: const Text("Welcome to GMDA Official Application")),
-    );
-  }
-}
-
-class Homepage extends StatefulWidget {
-  const Homepage({Key? key}) : super(key: key);
-
-  @override
-  State<Homepage> createState() => _HomepageState();
-}
-
-class _HomepageState extends State<Homepage> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Container(
-        child: Row(
-          children: [
-            Column(
+      body: Column(
+        children : [Container(
+            margin: EdgeInsets.only(top: 45, bottom: 15),
+            padding: EdgeInsets.only(left: 20, right: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Country"),
-                Text("City")
+                Column(
+                  children: [
+                    BigText(
+                      text: "India",
+                      color: Colors.green,
+                    ),
+                    Row(
+                      children: [
+                        SmallText(text: "Karnal", color: Colors.grey, size: 10),
+                        Icon(Icons.arrow_drop_down),
+                      ],
+                    )
+                  ],
+                ),
+                Column(children: [
+                  Center(
+                    child: Container(
+                      child: Icon(
+                        Icons.search,
+                        color: Colors.white,
+                      ),
+                      // ListTile(
+                      //   leading: Icon(CupertinoIcons.search),
+                      // ),
+                      width: 45,
+                      height: 45,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.green),
+                    ),
+                  ),
+                  
+                ],
+                
+                ),
+               
               ],
-            ),
-            Container(
-              width:45,
-              height:45,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),
-              color: Colors.blue),
-            ),
-          ],
-         
-       )
+            )),
+        FullPageBody(),
+        ] ,
+      
+
       ),
+      
     );
+    
+    
   }
 }

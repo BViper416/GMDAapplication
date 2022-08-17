@@ -1,0 +1,3 @@
+target ' gmda ' do 
+pod 'Googlemaps'
+end
