@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                
               ],
             )),
-        FullPageBody(),
+        Expanded(child: SingleChildScrollView(child: FullPageBody(),)),
         ] ,
       
 

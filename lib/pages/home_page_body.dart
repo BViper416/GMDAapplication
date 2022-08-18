@@ -35,8 +35,8 @@ class _FullPageBodyState extends State<FullPageBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children:[ Container(
+    return Column(children: [
+      Container(
         // color: Colors.red,
         height: 320,
         child: PageView.builder(
@@ -47,25 +47,135 @@ class _FullPageBodyState extends State<FullPageBody> {
             }),
       ),
       new DotsIndicator(
-  dotsCount: 5,
-  position: _currPageValue,
-  decorator: DotsDecorator(
-    activeColor: Colors.blue,
-    size: const Size.square(9.0),
-    activeSize: const Size(18.0, 9.0),
-    activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-  ),
-)
-      ]
+        dotsCount: 5,
+        position: _currPageValue,
+        decorator: DotsDecorator(
+          activeColor: Colors.blue,
+          size: const Size.square(9.0),
+          activeSize: const Size(18.0, 9.0),
+          activeShape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+        ),
+      ),
+      SizedBox(height: 20),
 
-    );
+      Container(
+          margin: EdgeInsets.only(left: 30),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              BigText(text: "Popular"),
+              SizedBox(
+                width: 10,
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 3),
+                child: SmallText(text: "."),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 2),
+                child: SmallText(
+                  text: "Most viewed in your area",
+                  color: Colors.grey,
+                ),
+              )
+            ],
+          )),
+// List of popular view house
+
+      Container(
+        height: 700,
+        child: ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return Container(
+                margin: EdgeInsets.only(left: 20, right: 20, top: 10),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 120,
+                      height: 120,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white54,
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage("assets/image/house2.jpeg"))),
+                    ),
+                    //Text Container Will start from here
+
+                    Expanded(
+                      child: Container(
+                        height: 100,
+                        // width: 200,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(20),
+                                bottomRight: Radius.circular(20)),
+                            color: Colors.white),
+
+                        child:
+                        
+                         Padding(
+                            padding: EdgeInsets.only(left: 15, right:15),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                BigText(text: "Bandhan Bank"),
+                                SmallText(text: "Updated 2 days ago", color: Colors.grey,),
+
+                                SizedBox(height:20),
+
+                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      
+                      IconAndTextWidget(
+                          icon: Icons.house,
+                          text: "House",
+                          color: Colors.grey,
+                          iconColor: Colors.black),
+                      // // SizedBox(
+                      // //   width: 30,
+                      // ),
+                      IconAndTextWidget(
+                          icon: Icons.location_on,
+                          text: "2km",
+                          color: Colors.grey,
+                          iconColor: Colors.blue),
+                      // SizedBox(
+                      //   width: 30,
+                      // ),
+                      IconAndTextWidget(
+                          icon: Icons.family_restroom,
+                          text: "Family",
+                          color: Colors.grey,
+                          iconColor: Colors.redAccent)
+                    ],
+                  )
+                             
+                              ],
+                            )),
+                      ),
+                    )
+                  ],
+                ),
+              );
+            }),
+      )
+    ]);
   }
 
   Widget _buildPageItem(int index) {
     Matrix4 matrix = new Matrix4.identity();
     if (index == _currPageValue.floor()) {
       var currScale = 1 - (_currPageValue - index) * (1 - _scaleFactor);
-      matrix = Matrix4.diagonal3Values(1, currScale, 1); 
+      matrix = Matrix4.diagonal3Values(1, currScale, 1);
     } else if (index == _currPageValue.floor() + 1) {
       var currScale =
           _scaleFactor = (_currPageValue - index + 1) * (1 - _scaleFactor);
@@ -90,12 +200,13 @@ class _FullPageBodyState extends State<FullPageBody> {
             height: 120,
             margin: EdgeInsets.only(left: 20, right: 20, bottom: 40),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20), color: Colors.white, boxShadow: [
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+                boxShadow: [
                   BoxShadow(
-                    color: Colors.black26,
-                     blurRadius: 5.0,
-                      offset: Offset(0 , 5)
-                  )
+                      color: Colors.black26,
+                      blurRadius: 5.0,
+                      offset: Offset(0, 5))
                 ]),
             child: Container(
               padding: EdgeInsets.only(top: 15, left: 15, right: 15),
@@ -158,7 +269,6 @@ class _FullPageBodyState extends State<FullPageBody> {
                 ],
               ),
             ),
-            
           ),
         )
       ],
